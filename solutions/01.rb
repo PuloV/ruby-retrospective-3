@@ -1,7 +1,8 @@
 class Integer
-  def prime()
-    return false if self < 0
-    return true if self < 3
+
+  def prime?()
+    return false if self <= 1
+    return true if self <= 3
     (2.. Math.sqrt(self.abs)).each do |var|
       if self%var == 0
          return  false
@@ -9,16 +10,18 @@ class Integer
     end
     return true
   end
+
   def prime_factors()
     primes = []
-    return self if self.prime
-    (2 .. self).each do |d|
-      if self % d == 0 and d.prime
-      primes.push(d)
-      return primes.push((self/d ) . prime_factors)
+    return [self.abs] if self.prime?
+    2.upto(self.abs) do |i|
+      if self % i == 0 and i.prime?
+      primes.push(i)
+      return (self/i) . prime_factors.insert(0,i)
       end
     end
   end
+
   def harmonic()
     if self < 0
       return false
@@ -29,8 +32,10 @@ class Integer
     end
     return harmNum
   end
+
   def digits()
-    currNum = self
+    currNum = self.abs
+    return [0] if self == 0
     digitsArray = []
     while currNum != 0
       digitsArray.push(currNum % 10)
@@ -38,8 +43,11 @@ class Integer
     end
     return digitsArray.reverse
   end
+
 end
+
 class Array
+
   def average()
     totalValue = 0.0
     (0... self.size).each do |var|
@@ -47,6 +55,7 @@ class Array
     end
     return totalValue/self.size
   end
+
   def frequencies()
     frequenciesArray = Hash.new
     (0... self.size).each do |var|
@@ -57,6 +66,7 @@ class Array
     end
     return frequenciesArray
   end
+
   def drop_every(n)
     dropped = []
     (0... self.size).each do |var|
@@ -66,13 +76,17 @@ class Array
     end
     return dropped
   end
+
   def combine_with(other)
     max  = self.size > other.size ? self.size : other.size
+    return self if other.size == 0
+    return other if self.size == 0
     combination = []
-    (0...max).each do |i|
-      combination.push(self[i]) if self[i]
-      combination.push(other[i]) if other[i]
+    0.upto(max) do |i|
+      combination.push(self[i]) if i < self.size
+      combination.push(other[i]) if i < other.size
     end
     return combination
   end
+
 end
