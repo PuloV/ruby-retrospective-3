@@ -30,7 +30,7 @@ class Integer
     (2.. self).each do |var|
       harmNum += Rational(1,var)
     end
-    return harmNum
+    harmNum
   end
 
   def digits()
@@ -41,7 +41,7 @@ class Integer
       digitsArray.push(currNum % 10)
       currNum /= 10
     end
-    return digitsArray.reverse
+    digitsArray.reverse
   end
 
 end
@@ -53,18 +53,18 @@ class Array
     (0... self.size).each do |var|
       totalValue+=self[var]
     end
-    return totalValue/self.size
+    totalValue/self.size
   end
 
   def frequencies()
     frequenciesArray = Hash.new
     (0... self.size).each do |var|
-      if frequenciesArray[self[var]] == nil
+      if !frequenciesArray[self[var]]
         frequenciesArray[self[var]] = 0
       end
         frequenciesArray[self[var]] += 1
     end
-    return frequenciesArray
+    frequenciesArray
   end
 
   def drop_every(n)
@@ -74,7 +74,7 @@ class Array
        dropped.push(self[var])
       end
     end
-    return dropped
+    dropped
   end
 
   def combine_with(other)
@@ -86,7 +86,7 @@ class Array
       combination.push(self[i]) if i < self.size
       combination.push(other[i]) if i < other.size
     end
-    return combination
+    combination
   end
 
 end
