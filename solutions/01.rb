@@ -3,7 +3,7 @@ class Integer
   def prime?()
     return false if self <= 1
     return true if self <= 3
-    (2.. Math.sqrt(self.abs)).each do |var|
+    2.upto(Math.sqrt(self.abs)).each do |var|
       if self%var == 0
          return  false
        end
