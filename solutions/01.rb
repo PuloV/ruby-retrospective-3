@@ -58,7 +58,7 @@ class Array
 
   def frequencies()
     frequenciesArray = Hash.new
-    (0... self.size).each do |var|
+    0.upto(self.size).each do |var|
       if !frequenciesArray[self[var]]
         frequenciesArray[self[var]] = 0
       end
@@ -69,7 +69,7 @@ class Array
 
   def drop_every(n)
     dropped = []
-    (0... self.size).each do |var|
+    0.upto(self.size).each do |var|
       if (var+1)%n  != 0
        dropped.push(self[var])
       end
