@@ -37,6 +37,12 @@ module Graphics
       @layout[[x,y]] = true
       @x , @y = x , y
     end
+
+    def eql?(point)
+      @x == point.x and @y == point.y
+    end
+
+    alias == eql?
   end
 
 
@@ -152,6 +158,12 @@ module Graphics
 
     end
 
+    def eql?(line)
+      @from== line.from and @to == line.to
+    end
+
+    alias == eql?
+
   end
 
 
@@ -187,6 +199,12 @@ module Graphics
         @layout[[end_point.x,i]] = true
       end
     end
+
+    def eql?(rectangle)
+      @top_left == rectangle.top_left and @bottom_right == rectangle.bottom_right
+    end
+
+    alias == eql?
 
   end
 
