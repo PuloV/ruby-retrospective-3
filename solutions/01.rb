@@ -27,7 +27,7 @@ class Integer
       return false
     end
      harmNum = Rational(1,1)
-    (2.. self).each do |var|
+     2.upto(self) do |var|
       harmNum += Rational(1,var)
     end
     harmNum
@@ -49,10 +49,7 @@ end
 class Array
 
   def average()
-    totalValue = 0.0
-    (0... self.size).each do |var|
-      totalValue+=self[var]
-    end
+    totalValue = self.reduce(:+)
     totalValue/self.size
   end
 
